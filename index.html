@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TUNA Button</title>
+  <style>
+    :root {
+      --bg: #000;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .btn {
+      background: url("Tuna Button.png") no-repeat center center / cover;
+      border: none;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease;
+    }
+    .btn:hover { transform: scale(1.05); }
+    .btn:active { transform: scale(0.95); }
+    .btn:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body>
+  <button class="btn" aria-label="Play random MP3" onclick="playRandomMP3()"></button>
+
+  <script>
+    // Update with your own MP3 file names or keep the defaults
+    const mp3Library = [
+      "audio/song1.mp3",
+      "audio/song2.mp3",
+      "audio/song3.mp3"
+    ];
+
+    let currentAudio = null;
+
+    function playRandomMP3() {
+      // Stop current track if playing
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+
+      // Pick a random track
+      const randomIndex = Math.floor(Math.random() * mp3Library.length);
+      currentAudio = new Audio(mp3Library[randomIndex]);
+      currentAudio.play();
+    }
+  </script>
+</body>
+</html>
